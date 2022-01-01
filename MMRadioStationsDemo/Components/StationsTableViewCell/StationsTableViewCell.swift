@@ -9,8 +9,11 @@ import UIKit
 
 class StationsTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
     static let identifier: String = "StationsTableViewCell"
+    static let placeHolderImageName: String = "placeholder"
     
+    // MARK: - Life Cyle Methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -29,11 +32,12 @@ class StationsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    // MARK: - Public Methods
     func setup(radioStationInfo: RadioStation, logo: Data?, indexPath: IndexPath, completion: ((_ data: Data?, _ indexPath: IndexPath) -> Void)?) {
         if let logoImageData = logo {
             imageView?.image = UIImage(data: logoImageData)
         } else {
-            imageView?.image = UIImage(named: "placeholder")
+            imageView?.image = UIImage(named: StationsTableViewCell.placeHolderImageName)
             NetworkManager.shared.downloadImage(from: radioStationInfo.stationLogo) { [weak self] imageData in
                 if let data = imageData {
                     DispatchQueue.main.async {

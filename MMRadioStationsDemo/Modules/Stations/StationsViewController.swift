@@ -9,14 +9,17 @@ import UIKit
 
 class StationsViewController: BaseViewController {
 
+    // MARK: - Properties
     var viewModel: StationsViewModel!
     var tableView: UITableView!
     var loader: UIActivityIndicatorView!
     var noDataFoundLabel: UILabel!
+    let noStationsFoundText = "No stations to display."
     
+    // MARK: - Private Methods
     private func intializeNoDataFoundLabel() {
         noDataFoundLabel = UILabel()
-        noDataFoundLabel.text = "No stations to display."
+        noDataFoundLabel.text = noStationsFoundText
         noDataFoundLabel.isHidden = true
         view.addSubview(noDataFoundLabel)
         noDataFoundLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -65,15 +68,6 @@ class StationsViewController: BaseViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Stations"
-        initialize()
-    }
-
-}
-
-extension StationsViewController {
     private func parseXML(data: Data) {
         XMLHelper().parseData(data: data) { [weak self] (parsedData) in
             self?.viewModel.updateRadioStations(stations: parsedData.map { RadioStation(details: $0) })
@@ -93,8 +87,15 @@ extension StationsViewController {
         }
     }
     
+    // MARK: - Life Cycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Stations"
+        initialize()
+    }
 }
 
+// MARK: - UITableViewDelegate and UITableViewDataSource Methods
 extension StationsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

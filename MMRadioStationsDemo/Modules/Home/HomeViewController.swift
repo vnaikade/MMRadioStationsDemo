@@ -10,13 +10,13 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     
-    // MARK:- Properties
+    // MARK: - Properties
     var defaultUrlButton: Button?
     var submitButton: Button?
     var textField: UITextField?
     private var viewModel = HomeViewModel()
     
-    // MARK:- Private Methods
+    // MARK: - Private Methods
     private func initializeTextField() {
         let leftPadding: CGFloat = 20.0
         textField = UITextField()
@@ -63,12 +63,13 @@ class HomeViewController: BaseViewController {
         navigationController?.pushViewController(stationsViewController, animated: true)
     }
     
-    // MARK:- Life Cycle Methods
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
     }
     
+    // MARK: - Event Methods
     @objc func defaultButtonAction() {
         textField?.text = defaultUrl
         viewModel.setStationUrl(urlString: defaultUrl)
@@ -84,6 +85,7 @@ class HomeViewController: BaseViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate Methods
 extension HomeViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let currentText = textField.text, let textRange = Range(range, in: currentText) {

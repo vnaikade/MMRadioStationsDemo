@@ -9,14 +9,17 @@ import Foundation
 
 struct StationsViewModel {
     
+    // MARK: - Properties
     var url: String?
     private var stations: [RadioStation] = []
     private var stationLogos: [IndexPath: Data] = [:]
     
+    // MARK: - Life Cycle Methods
     init(staionsUrl: String?) {
         url = staionsUrl
     }
     
+    // MARK: - Public Methods
     mutating func updateRadioStations(stations: [RadioStation]) {
         self.stations = stations
         if let firstIndex = self.stations.firstIndex(where: { station in

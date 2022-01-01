@@ -9,11 +9,12 @@ import UIKit
 
 class Button: UIButton {
     
-    // MARK:- Properties
+    // MARK: - Properties
     var buttonWidth: CGFloat = 200.0
     var buttonHeight: CGFloat = 44.0
     var buttonTitle = "Submit"
     
+    // MARK: - Public Methods
     func setup(superView: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         let horizontalConstraint = self.centerXAnchor.constraint(equalTo: superView.centerXAnchor)

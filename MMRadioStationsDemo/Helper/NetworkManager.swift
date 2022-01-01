@@ -10,6 +10,7 @@ import UIKit
 
 class NetworkManager {
     
+    // MARK: - Properties
     let urlSession: URLSession = {
         let config = URLSessionConfiguration.default
         config.urlCache = nil
@@ -19,8 +20,10 @@ class NetworkManager {
         return session
     }()
     
+    // MARK: - Singlton
     static let shared = NetworkManager()
     
+    // MARK: - Public Methods
     func downloadImage(from imageUrl: String, completion: ((_ imageData: Data?) -> Void)?) {
         guard let url = URL(string: imageUrl) else {
             completion?(nil)

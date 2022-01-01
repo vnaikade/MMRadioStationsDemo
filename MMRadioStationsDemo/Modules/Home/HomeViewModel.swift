@@ -11,8 +11,10 @@ let defaultUrl = "http://phorus.vtuner.com/setupapp/phorus/asp/browsexml/navXML.
 
 struct HomeViewModel {
     
+    // MARK: - Properties
     private var stationUrl: String?
     
+    // MARK: - Public Methods
     mutating func setStationUrl(urlString: String?) {
         stationUrl = urlString
     }
